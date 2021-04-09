@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/category.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Yellowtail&family=Dancing+Script&family=Josefin+Sans:ital,wght@1,700&family=Merienda:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+    <!-- 라이브러리 로드 순서는 아래와 같다. cdnjs 저장소에서 라이브러리를 로드하였다. -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/3.0.0/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.min.css" rel="stylesheet"/>
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/album/">
+    
+
+    <title>Product</title>
+  </head>
+  <body>
+    <%- include('header'); %>
+    <div class="category_main">
+      <p class="category_word">Product &nbsp;&nbsp; List</p>
+    </div>
+    <div class="category_list">
+      <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"><span class="filter">FILTER</span>&times;</a>
+        <button class="dropdown-btn"><i class="fas fa-clipboard-list"></i>&nbsp; Category<i class="fas fa-caret-down"></i></button>
+        <div class="dropdown-container">
+          <a href="/category">All</a>
+          <a href="/category?cat=fashion">Fashion</a> 
+          <a href="/category?cat=electronics">Electronics</a>
+          <a href="/category?cat=beauty">Beauty</a>
+          <a href="/category?cat=food">Food</a>
+          <a href="/category?cat=daily">Home Supply</a>
+          <a href="/category?cat=etc">Etc</a>
+        </div>
+        <button class="dropdown-btn"><i class="fas fa-won-sign"></i>&nbsp; Price<i class="fas fa-caret-down"></i></button>
+        <div class="filter-content price-container">
+          <div class="card-body">
+          <div class="form-row">
+          <div class="form-group col-md-6">
+            <label class="price_tag">Min</label>
+            <input type="number" class="form-control" id="min_price" placeholder="0&#8361;">
+          </div>
+          <div class="form-group col-md-6 text-right">
+            <label class="price_tag">Max</label>
+            <input type="number" class="form-control" id="max_price" placeholder="1000&#8361;">
+          </div>
+          </div>
+          </div>
+        </div>
+        <button class="dropdown-btn"><i class="fas fa-clock"></i>&nbsp; End Date<i class="fas fa-caret-down"></i></button>
+        <div class="filter-content price-container">
+          <div class="card-body">
+          <div class="form-row">
+          <div class="form-group col-md-6">
+            <input type="date" class="form-control" id="end_date" name="end_date" placeholder="" style="width: 200px;">
+          </div>
+          </div>
+          </div>
+        </div>
+        <button class="dropdown-btn"><i class="fas fa-exclamation-circle"></i>&nbsp; Expired Item<i class="fas fa-caret-down"></i></button>
+        <div class="filter-content price-container">
+          <div class="card-body">
+          <div class="form-row">
+          <div class="form-group col-md-6 form-inline">
+            <label class="price_tag_expire"><input type="checkbox" class="form-control" id="valid_all" name="valid_all" value="true" style="width: 20px; display: inline-block;">&nbsp;&nbsp;See&nbsp;Expired</label>
+          </div>
+          </div>
+          </div>
+        </div>
+        <button class="deploy" id="deploy" onclick="filter()">Search</button>
+      </div>
+      <div class="album py-5">
+        <div class="container">
+          <div class="product-list-sm-2 g-3">
+            <!--<span style="font-size:30px;cursor:pointer; font-weight:bold; " onclick="openNav()" >&#9776; Filter</span>-->
+            <p><button class="openbtn filter_btn" onclick="openNav()">☰&nbsp;Filter</button></p>
+          </div>
+          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            <% for(var i in items_key) { %> 
+              <% if (!(items_key[i] in items)) continue; 
+                if(items[items_key[i]].time_left == 0 && valid != 'true') continue;
+               %> 
+            <div class="col" style="margin-top: 20px;">
+              <div class="card shadow-sm">
+                <svg class="bd-placeholder-img card-img-top" width="100%" height="0" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><img class="item_img" src="<%= items[items_key[i]].image %>" alt="image"></svg>
+                <div class="card-body">
+                  <a href="/item?itemID=<%=items_key[i]%>" style="text-decoration: none; color:black"><p class="card-text" style="font-size: 20px; font-weight:bold;"><%=items[items_key[i]].name%></p></a>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <p style="display: inline-block; font-size: 15px;" >
+                      <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-cash" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M15 4H1v8h14V4zM1 3a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H1z"/>
+                      <path d="M13 4a2 2 0 0 0 2 2V4h-2zM3 4a2 2 0 0 1-2 2V4h2zm10 8a2 2 0 0 1 2-2v2h-2zM3 12a2 2 0 0 0-2-2v2h2zm7-4a2 2 0 1 1-4 0 2 2 0 0 1 4 0z"/>
+                      </svg>&nbsp;<%=items[items_key[i]].price%>&#8361;&nbsp;&nbsp;</p>
+                    <p style="display: inline-block; color:red; font-size: 15px">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-truck" viewBox="0 0 20 20" style="color: red;">
+                        <path fill-rule="evenodd" d="M0 3.5A1.5 1.5 0 0 1 1.5 2h9A1.5 1.5 0 0 1 12 3.5V5h1.02a1.5 1.5 0 0 1 1.17.563l1.481 1.85a1.5 1.5 0 0 1 .329.938V10.5a1.5 1.5 0 0 1-1.5 1.5H14a2 2 0 1 1-4 0H5a2 2 0 1 1-3.998-.085A1.5 1.5 0 0 1 0 10.5v-7zm1.294 7.456A1.999 1.999 0 0 1 4.732 11h5.536a2.01 2.01 0 0 1 .732-.732V3.5a.5.5 0 0 0-.5-.5h-9a.5.5 0 0 0-.5.5v7a.5.5 0 0 0 .294.456zM12 10a2 2 0 0 1 1.732 1h.768a.5.5 0 0 0 .5-.5V8.35a.5.5 0 0 0-.11-.312l-1.48-1.85A.5.5 0 0 0 13.02 6H12v4zm-9 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm9 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+                      </svg>&nbsp;<%=items[items_key[i]].price_end%>&#8361;</p>
+                    <br>
+                  </div>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <p style="display: inline-block;">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" class="bi bi-stopwatch card-fo" viewBox="0 0 16 16" >
+                        <path fill-rule="evenodd" d="M6 .5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1H9v1.07A7.001 7.001 0 0 1 8 16 7 7 0 0 1 7 2.07V1h-.5A.5.5 0 0 1 6 .5zM8 3a6 6 0 1 0 .001 12A6 6 0 0 0 8 3zm0 2.1a.5.5 0 0 1 .5.5V9a.5.5 0 0 1-.5.5H4.5a.5.5 0 0 1 0-1h3V5.6a.5.5 0 0 1 .5-.5z"/>
+                      </svg>
+                      <%if((items[items_key[i]].time_left - Math.floor(items[items_key[i]].time_left)).toFixed(1) == 0.1){ %> 
+                        <small class="text-muted" style="display:inline-block;"><%=(Math.floor(items[items_key[i]].time_left))%> mins left</small>
+                        <% } else if ((items[items_key[i]].time_left - Math.floor(items[items_key[i]].time_left)).toFixed(1) == 0.2){%> 
+                          <small class="text-muted" style="display:inline-block;"><%=Math.floor(items[items_key[i]].time_left)%> hours left</small>
+                        <% } else{ %> 
+                          <small class="text-muted" style="display:inline-block;"><%=Math.floor(items[items_key[i]].time_left)%> days left</small>
+                      <% } %> 
+                    </p>
+                    <% if(rows != ''){ %> 
+                    <p style="display: inline-block;">
+                      <a href="/add_like?itemID=<%=items_key[i]%>" class="card-btn" style="margin-right:20px; text-decoration:none">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-suit-heart-fill card-fo" viewBox="0 0 20 20" style="color: red; ">
+                        <path d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z" onclick="ds()"/>
+                        </svg>
+                      </a>
+                      <a class="card-btn" style="text-decoration: none;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" class="bi bi-cart-fill card-fo" viewBox="0 0 20 20" style="color: skyblue;">
+                        <path fill-rule="evenodd" d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm7 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+                        </svg>
+                      </a>
+                    </p>
+                    <p style="display: inline-block;">
+                    </p>
+                    <% } %> 
+                  </div>
+                </div>
+              </div>
+            </div>
+            <% } %> 
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <footer>
+    <%- include('footer'); %>
+  </footer>
+  <script>
+    function openNav() {
+      document.getElementById("mySidenav").style.width = "250px";
+    }
+    
+    function closeNav() {
+      document.getElementById("mySidenav").style.width = "0";
+    }
+    var dropdown = document.getElementsByClassName("dropdown-btn");
+    var i;
+
+    for (i = 0; i < dropdown.length; i++) {
+      dropdown[i].addEventListener("click", function() {
+      this.classList.toggle("active");
+      var dropdownContent = this.nextElementSibling;
+      if (dropdownContent.style.display === "block") {
+      dropdownContent.style.display = "none";
+      } else {
+      dropdownContent.style.display = "block";
+      }
+      });
+    }
+
+    var deploy = document.getElementsByClassName("deploy");
+    
+    function filter(){
+      var min_price = document.getElementById("min_price").value;
+      var max_price = document.getElementById("max_price").value;
+      var end_time = document.getElementById("end_date").value;
+      var valid_all = document.getElementById("valid_all");
+      var ischeck = $(valid_all).is(":checked");
+      var cur = document.location.href;
+      if(cur.includes('cat=')){
+        var s = cur.split('cat=');
+        s = s[1];
+        s = s.split('&');
+        s = s[0];
+        cur = "/category?cat=" + s;
+        cur = cur + "&min="+min_price+"&max="+max_price+"&end="+end_time+"&valid="+ischeck;
+        window.location.href = cur;
+      }
+      else{
+        cur = "/category";
+        cur = cur + "?min="+min_price+"&max="+max_price+"&end="+end_time+"&valid="+ischeck;
+        window.location.href = cur;
+      }    
+    }   
+
+    </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-app.js"></script>
+
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+      https://firebase.google.com/docs/web/setup#available-libraries -->
+  <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-analytics.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.2/moment-with-locales.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.min.js"></script>
+</html>

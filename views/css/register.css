@@ -1,0 +1,15 @@
+.register_main{
+    height: 250px;
+    background-image: url('../icon/account.jpg');
+    background-size: 100% 250px;
+    background-repeat: no-repeat;
+    object-fit: contain;
+}
+
+.register_list{
+    font-family: 'Yellowtail', cursive;
+    text-align: center;
+    font-size: 55px;
+    padding-top: 100px;
+    color: white;
+}

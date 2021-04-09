@@ -1,0 +1,44 @@
+.cart_main{
+    height: 250px;
+    background-image: url('../icon/cart.jpg');
+    background-size: 100% 250px;
+    background-repeat: no-repeat;
+    object-fit: contain;
+}
+
+.cart_list{
+    font-family: 'Yellowtail', cursive;
+    text-align: center;
+    font-size: 55px;
+    padding-top: 100px;
+}
+
+.list{
+    font-family: 'Open Sans', sans-serif;
+    margin-top: 50px;
+    display: grid;
+}
+
+.list_add{
+    font-family: 'Open Sans', sans-serif;
+    text-align: center;
+}
+
+.list_table{
+    text-align: center;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.item_img{
+    height: 150px;
+    width: auto;
+    object-fit: cover;
+    border: gray;
+    border-radius: 3px;
+}
+
+.item_word{
+    padding-top: 50px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
+}

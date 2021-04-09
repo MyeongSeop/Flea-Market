@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=18cc50247dc6061bb61c7aa661c301a0"></script>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/service.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Josefin+Sans:ital,wght@1,700&family=Merienda:wght@700&family=Open+Sans&family=Yellowtail&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+    <!-- 라이브러리 로드 순서는 아래와 같다. cdnjs 저장소에서 라이브러리를 로드하였다. -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/3.0.0/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.min.css" rel="stylesheet"/>
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/album/">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    <title>Services</title>
+  </head>
+  <body>
+    <%- include('header'); %>
+    <div class="service_main">
+        <p class="service_word" style="font-family: 'Yellowtail', cursive;">Services</p>
+    </div>
+    <div class='container-fluid mx-auto mt-5 mb-5 col-12' style="text-align: center">
+        <div class="hd">
+            <p>We'd love to here from you</p>
+        </div>
+        <br>
+        <div class="row" style="justify-content: center">
+            <div class="card col-md-3 col-12">
+                <div class="card-content">
+                    <div class="card-body"> <img class="img" src="https://i.imgur.com/S7FJza5.png" />
+                        <div class="shadow"></div>
+                        <div class="card-title"> We're Free </div>
+                        <div class="card-subtitle">
+                            <p> <small class="text-muted">Our site is totally FREE for everyone. What you need to do is just register and upload and buy the product whatever you want. 
+                               <br> There is no extra fee or commission for this web site.</small> </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card col-md-3 col-12 ml-2">
+                <div class="card-content">
+                    <div class="card-body"> <img class="img" src="icon/trust.png" style="height: 100px; width:auto"/>
+                        <div class="card-title"> We're Reliable </div>
+                        <div class="card-subtitle">
+                            <p> <small class="text-muted"> We guarantee safe trade progress and transparent payment progress. Every malignant users are checked and banned in real-time! </small> </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card col-md-3 col-12 ml-2">
+                <div class="card-content">
+                    <div class="card-body"> <img class="img" src="icon/listen.png" style="height: 100px; width:auto"/>
+                        <div class="card-title"> We Listen to you </div>
+                        <div class="card-subtitle">
+                            <p> <small class="text-muted"> We are opend to listen to clients voice! You can report or complain to us freely at any time! </small> </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <% if(rows != ''){ %>
+        <div class="ft">
+            <p class="chk"><small class="text-muted">Any message?</small></p>
+            <button class="btn btn-outline-primary" type="button" data-toggle="modal" data-target="#msgModal">Send Message</button>
+        </div>
+        <% } %> 
+        <div class="modal fade" id="msgModal" tabindex="-1" aria-labelledby="msgModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="msgModalLabel">New message</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <form>
+                    <div class="input-group mb-6">
+                        <div class="input-group-prepend">
+                          <label class="input-group-text" for="inputGroupSelect01">&nbsp;&nbsp;Type&nbsp;&nbsp;</label>
+                        </div>
+                        <select class="custom-select" id="msg-type" name="msg-type">
+                          <option selected>Message Type</option>
+                          <option value="complain">Complain</option>
+                          <option value="report">Report</option>
+                          <option value="etc">Etc</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="recipient-name" class="col-form-label" style="font-weight: bold;">Title</label>
+                      <input type="text" class="form-control" id="msg-title">
+                    </div>
+                    <div class="form-group">
+                      <label for="message-text" class="col-form-label" style="font-weight: bold;">Message</label>
+                      <textarea class="form-control" id="message"></textarea>
+                    </div>
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                  <button type="button" class="btn btn-primary" onclick="msg()">Send message</button>
+                </div>
+              </div>
+            </div>
+        </div>       
+    </div>
+    
+    <div class="container" style="margin-top: 100px; text-align:center ">
+        <div class="hd">
+            <p>Visiting our Company</p>
+        </div>
+        <div class="row">
+            <div id="map" style="width: 100%; height: 350px; margin-top:50px; display:inline"></div>
+            <div class="col-sm-4" style="text-align: left; margin-top:50px;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-geo-alt" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M12.166 8.94C12.696 7.867 13 6.862 13 6A5 5 0 0 0 3 6c0 .862.305 1.867.834 2.94.524 1.062 1.234 2.12 1.96 3.07A31.481 31.481 0 0 0 8 14.58l.208-.22a31.493 31.493 0 0 0 1.998-2.35c.726-.95 1.436-2.008 1.96-3.07zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z"/>
+                    <path fill-rule="evenodd" d="M8 8a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                </svg><br><br><h3 style="display: inline;">Location</h3>
+                <div style="margin-top: 20px;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-fill" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M4 4a4 4 0 1 1 4.5 3.969V13.5a.5.5 0 0 1-1 0V7.97A4 4 0 0 1 4 3.999zm2.493 8.574a.5.5 0 0 1-.411.575c-.712.118-1.28.295-1.655.493a1.319 1.319 0 0 0-.37.265.301.301 0 0 0-.057.09V14l.002.008a.147.147 0 0 0 .016.033.617.617 0 0 0 .145.15c.165.13.435.27.813.395.751.25 1.82.414 3.024.414s2.273-.163 3.024-.414c.378-.126.648-.265.813-.395a.619.619 0 0 0 .146-.15.148.148 0 0 0 .015-.033L12 14v-.004a.301.301 0 0 0-.057-.09 1.318 1.318 0 0 0-.37-.264c-.376-.198-.943-.375-1.655-.493a.5.5 0 1 1 .164-.986c.77.127 1.452.328 1.957.594C12.5 13 13 13.4 13 14c0 .426-.26.752-.544.977-.29.228-.68.413-1.116.558-.878.293-2.059.465-3.34.465-1.281 0-2.462-.172-3.34-.465-.436-.145-.826-.33-1.116-.558C3.26 14.752 3 14.426 3 14c0-.599.5-1 .961-1.243.505-.266 1.187-.467 1.957-.594a.5.5 0 0 1 .575.411z"/>
+                    </svg>&nbsp;&nbsp;<span>2066 west of Jangan-gu, Suwon</span>
+                </div>
+                <div style="margin-top: 20px;">
+                    <i class="fa fa-train" aria-hidden="true"></i>&nbsp;&nbsp;<span>Sungkyunkwan University Station Line 1</span>
+                </div>
+            </div>
+            <div class="col-sm-4" style="text-align: left; margin-top:50px;">
+                <i class="fa fa-phone" aria-hidden="true" style="height: 34; width:34;"></i><br><br><h3 style="display: inline;">Contact</h3>
+                <div style="margin-top: 20px;">
+                    <i class="fa fa-mobile" aria-hidden="true"></i>&nbsp;&nbsp;<span>Telephone 1 : 010-2856-7589</span>
+                </div>
+                <div style="margin-top: 20px;">
+                    <i class="fa fa-mobile" aria-hidden="true"></i>&nbsp;&nbsp;<span>Telephone 2 : 010-1234-5678</span>
+                </div>
+            </div>
+            <div class="col-sm-4" style="text-align: left; margin-top:50px;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-stopwatch" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M6 .5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1H9v1.07A7.001 7.001 0 0 1 8 16 7 7 0 0 1 7 2.07V1h-.5A.5.5 0 0 1 6 .5zM8 3a6 6 0 1 0 .001 12A6 6 0 0 0 8 3zm0 2.1a.5.5 0 0 1 .5.5V9a.5.5 0 0 1-.5.5H4.5a.5.5 0 0 1 0-1h3V5.6a.5.5 0 0 1 .5-.5z"/>
+                </svg><br><br><h3 style="display: inline;">Time</h3>
+                <div style="margin-top: 20px;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+                      </svg>&nbsp;&nbsp;<span>Work day : Every Weekday</span>
+                </div>
+                <div style="margin-top: 20px;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-x" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+                        <path fill-rule="evenodd" d="M6.146 7.146a.5.5 0 0 1 .708 0L8 8.293l1.146-1.147a.5.5 0 1 1 .708.708L8.707 9l1.147 1.146a.5.5 0 0 1-.708.708L8 9.707l-1.146 1.147a.5.5 0 0 1-.708-.708L7.293 9 6.146 7.854a.5.5 0 0 1 0-.708z"/>
+                      </svg>&nbsp;&nbsp;<span>Rest Day : Every Weekend</span>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+  </body>
+  <footer>
+    <%- include('footer'); %>
+  </footer>
+    <script>
+        function msg(){
+            var msg_type = document.getElementById('msg-type');
+            var title = document.getElementById('msg-title');
+            var message = document.getElementById('message');
+            if(!msg_type.value || msg_type.value == '' || msg_type.value =='Message Type'){
+                alert('Please choose type!');
+                return;
+            }
+            else{
+                if(!title.value || !message.value) alert('Please enter both title and message!');
+                else{
+                    msg_type = msg_type.value;
+                    title = title.value;
+                    message = message.value;
+                    var gogo = '/message?type=' + msg_type + '&title=' + title + '&message=' + message;
+                    window.location.href = gogo;
+                }
+            }
+            
+        }
+
+        var mapContainer = document.getElementById('map'), 
+            mapOption = { 
+                center: new kakao.maps.LatLng(37.296016689560226, 126.9754851411559), 
+                level: 4 
+            };
+
+        var map = new kakao.maps.Map(mapContainer, mapOption);
+        var markerPosition  = new kakao.maps.LatLng(37.296016689560226, 126.9754851411559); 
+
+        var marker = new kakao.maps.Marker({
+            position: markerPosition
+        });
+
+        marker.setMap(map);
+        var iwContent = '<div style="padding:5px; color:black; text-align:center">&nbsp;Flea Market office!</div>'; 
+
+        var infowindow = new kakao.maps.InfoWindow({
+            content : iwContent
+        });
+
+        kakao.maps.event.addListener(marker, 'mouseover', function() {
+            infowindow.open(map, marker);
+        });
+
+        kakao.maps.event.addListener(marker, 'mouseout', function() {
+            infowindow.close();
+        });
+
+    </script>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-app.js"></script>
+
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+      https://firebase.google.com/docs/web/setup#available-libraries -->
+  <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-analytics.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.2/moment-with-locales.min.js"></script>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.min.js"></script>
+</html>

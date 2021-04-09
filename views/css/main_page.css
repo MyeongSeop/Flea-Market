@@ -1,0 +1,146 @@
+.main_part{
+    display: grid;
+    background-image: url('../icon/main_back.jpg');
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    grid-template-columns: repeat(5, 1fr);
+}
+
+.main_img{
+    grid-column: 2/4;
+}
+
+.main_img>img{
+    width: 100%;
+    object-fit: cover;
+}
+
+.main_word{
+    grid-column: 4/6;
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.main_btn{
+    width: 100px;
+    height: auto;
+    font-size: 0.5vw;
+}
+
+.main_word>p{
+    width: 100%;
+    object-fit: cover;
+}
+
+.first{
+    font-family: 'Dancing Script', cursive;
+    font-size: 25px;
+    color: #2E64FE;
+    font-weight: bold;
+}
+
+.second{    
+    font-family: 'Merienda', cursive;
+    font-size: 4vw;
+    font-weight: bold;
+}
+
+.third{
+    font-family: 'Dancing Script', cursive;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.def_cat{
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 70px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 150px;
+    padding-bottom: 30px;
+}
+
+.main_category{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 2fr));
+    grid-gap: 50px;
+    margin: 50px;
+    object-fit: cover;
+    font-family: 'Merienda', cursive;
+    position: relative;
+    
+}
+
+.elec{
+    background-image: url('../icon/electronics.jpg');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    color: black;
+    border-radius: 15px;
+}
+.fashion{
+    background-image: url('../icon/fashion.jpg');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    color: white;
+    border-radius: 15px;
+}
+.beauty{
+    background-image: url('../icon/beauty.jpg');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    color: white;
+    border-radius: 15px;
+}
+.home{
+    background-image: url('../icon/home_supply.jpg');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    color: white;
+    border-radius: 15px;
+}
+
+.fashion{
+    background-image: url('../icon/fashion.jpg');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+.category{
+    text-align: center;
+    font-family: 'Merienda', cursive;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.product{
+    text-align: center;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 2fr));
+    grid-auto-rows: 300px;
+    grid-gap: 50px;
+    margin: 50px;
+    object-fit: cover;
+}
+
+.item{
+    font-family: 'Merienda', cursive;
+    text-align: center;
+    font-size: 20px;
+    margin-top: 20px;
+}
+
+.item .item_img{
+    width: 200px;
+    height: 200px;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+    text-align: center;
+    background-color: #E9E8E8;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}

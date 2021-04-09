@@ -1,0 +1,16 @@
+.footrt_do{
+    font-family: 'Poppins', sans-serif;
+}
+
+.info{
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    text-align: left;
+    font-family: 'Poppins', sans-serif;
+}
+
+.info_head{
+    font-weight: lighter;
+}
+

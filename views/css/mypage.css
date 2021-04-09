@@ -1,0 +1,100 @@
+.mypage_main{
+    height: 250px;
+    background-image: url('../icon/cart.jpg');
+    background-size: 100% 250px;
+    background-repeat: no-repeat;
+    object-fit: contain;
+}
+
+.mypage_list{
+    font-family: 'Yellowtail', cursive;
+    text-align: center;
+    font-size: 55px;
+    padding-top: 100px;
+}
+
+.list{
+    font-family: 'Open Sans', sans-serif;
+    margin-top: 50px;
+}
+
+.list_table{
+    text-align: center;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.doing{
+    text-align: center;
+    font-family: 'Open Sans', sans-serif;
+    margin-top: 50px;
+}
+
+.modal_content{
+    text-align: center;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.item_img{
+    height: 150px;
+    width: auto;
+    object-fit: cover;
+    border: gray;
+    border-radius: 3px;
+}
+
+.item_word{
+    padding-top: 50px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
+}
+.item_label{
+    text-align: left;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.des{
+    text-align: left;
+}
+
+
+
+
+tr.hide-table-padding td {
+    padding: 0;
+  }
+  
+  .expand-button {
+      position: relative;
+      cursor: pointer;
+  }
+  
+  .accordion-toggle .expand-button:after
+  {
+    position: absolute;
+    left:.75rem;
+    top: 50%;
+    transform: translate(0, -50%);
+    content: '-';
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
+  }
+  .accordion-toggle.collapsed .expand-button:after
+  {
+    font-family: 'Open Sans', sans-serif;
+    content: '+';
+  }
+  .accordion-toggle{
+      background-color: lightyellow;
+      font-family: 'Open Sans', sans-serif;
+      font-weight: bold;
+  }
+  .accordion-toggle.collapsed{
+      background-color: white;
+      font-family: 'Open Sans', sans-serif;
+      font-weight: initial;
+  }
+  .hide-list{
+      background-color: rgb(196, 230, 252);
+      font-family: 'Open Sans', sans-serif;
+      font-weight: bold;
+  }

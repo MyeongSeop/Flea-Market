@@ -1,0 +1,24 @@
+.account{
+    height: 250px;
+    background-image: url('../icon/account.jpg');
+    background-size: 100% 250px;
+    background-repeat: no-repeat;
+    object-fit: contain;
+}
+
+.account_word{
+    font-family: 'Yellowtail', cursive;
+    text-align: center;
+    font-size: 55px;
+    padding-top: 100px;
+    color: white;
+}
+
+.info_list{
+    font-family: 'Open Sans', sans-serif;
+    
+}
+
+.btns{
+    text-align: center; 
+}

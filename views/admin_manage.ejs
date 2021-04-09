@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/admin_manage.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Josefin+Sans:ital,wght@1,700&family=Merienda:wght@700&family=Open+Sans&family=Yellowtail&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+    <!-- 라이브러리 로드 순서는 아래와 같다. cdnjs 저장소에서 라이브러리를 로드하였다. -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/3.0.0/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.min.css" rel="stylesheet"/>
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/album/">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <title>Admin</title>
+  </head>
+  <body>
+    <div class="header">
+        <p style="text-align: center; margin-top:30px;">
+            <a href="/admin_manage">
+                <img src="icon/admin-logo.png" alt="img" style="width: 300px; height: 150;" >
+            </a>
+        </p>
+    </div>
+    <div class="admin_main">
+      <p class="admin_word">Admin &nbsp;&nbsp; Page</p>
+    </div>
+    <div class="container my-4" style="margin-top: 40px; ">
+      <h2 class="user_list">User List</h2>
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr style="font-weight: bold;">
+                <th scope="col"></th>
+                <th scope="col">#</th>
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Type</th>
+              </tr>
+            </thead>
+            <tbody>
+            <% for(i in user_key){ %> 
+            <tr class="accordion-toggle collapsed" id="accordion1" data-toggle="collapse" data-parent="#accordion1" href="#collapse<%=i%>">
+                <td class="expand-button"></td>
+                <td><%=i%></td>
+                <td><%=user_key[i]%></td>
+                <td><%=user[user_key[i]].name%></td>
+                <td><%=user[user_key[i]].type%></td>
+            </tr>
+            <tr class="hide-table-padding hide-list">
+                <td></td>
+                <td></td>
+                <td colspan="3">
+                    <div id="collapse<%=i%>" class="collapse in p-3">
+                        <div class="row">
+                            <div class="col-2"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                </svg>
+                            </div>
+                            <div class="col-4"><%=user[user_key[i]].rate%></div>
+                            <input type="hidden" id="rate<%=i%>" name="rate<%=i%>" value="<%=user[user_key[i]].rate%>">
+                        </div>
+                        <div class="row">
+                            <div class="col-2"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-telephone-fill" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M2.267.98a1.636 1.636 0 0 1 2.448.152l1.681 2.162c.309.396.418.913.296 1.4l-.513 2.053a.636.636 0 0 0 .167.604L8.65 9.654a.636.636 0 0 0 .604.167l2.052-.513a1.636 1.636 0 0 1 1.401.296l2.162 1.681c.777.604.849 1.753.153 2.448l-.97.97c-.693.693-1.73.998-2.697.658a17.47 17.47 0 0 1-6.571-4.144A17.47 17.47 0 0 1 .639 4.646c-.34-.967-.035-2.004.658-2.698l.97-.969z"/>
+                                </svg>
+                            </div>
+                            <div class="col-4"><%=user[user_key[i]].phone%></div>
+                            <input type="hidden" id="phone<%=i%>" name="phone<%=i%>" value="<%=user[user_key[i]].phone%>">
+                        </div>
+                        <div class="row">
+                            <div class="col-2"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope-fill" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555zM0 4.697v7.104l5.803-3.558L0 4.697zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757zm3.436-.586L16 11.801V4.697l-5.803 3.546z"/>
+                                </svg>
+                            </div>
+                            <div class="col-4"><%=user[user_key[i]].email%></div>
+                            <input type="hidden" id="email<%=i%>" name="email<%=i%>" value="<%=user[user_key[i]].email%>">
+                        </div>
+                        <div class="row">
+                            <div class="col-2"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-fill" viewBox="0 0 16 16">
+                                <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V5h16V4H0V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5z"/>
+                                </svg>
+                            </div>
+                            <div class="col-4"><%=user[user_key[i]].birth%></div>
+                            <input type="hidden" id="birth<%=i%>" name="birth<%=i%>" value="<%=user[user_key[i]].birth%>">
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <% } %> 
+            </tbody>
+          </table>
+        </div>
+        <div class="modify">
+            <div class="form-group form-inline float-right" style="text-align: center;">
+                <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#banModal">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                    <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                    <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                    </svg>&nbsp;&nbsp;Ban &nbsp;
+                </button>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#modifyModal">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-repeat" viewBox="0 0 16 16">
+                    <path d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41zm-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9z"/>
+                    <path fill-rule="evenodd" d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5.002 5.002 0 0 0 8 3zM3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9H3.1z"/>
+                    </svg>&nbsp;Modify
+                </button>
+            </div>
+            <div class="modal fade" id="banModal" tabindex="-1" aria-labelledby="banModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="banModalLabel">Ban User</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <form>
+                        <div class="form-group">
+                          <label for="recipient-name" class="col-form-label" style="text-align: left;">User Number</label>
+                          <input type="number" class="form-control" id="ban-num">
+                        </div>
+                      </form>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                      <button type="button" class="btn btn-danger" id="ban" value="<%=user_key.length%>" onclick="ban()">&nbsp;&nbsp;Ban&nbsp;&nbsp;</button>
+                    </div>
+                  </div>
+                </div>
+            </div>
+            <div class="modal fade" id="modifyModal" tabindex="-1" aria-labelledby="modifyModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="modifyModalLabel">Modify User</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <form>
+                        <div class="form-group">
+                          <label for="recipient-name" class="col-form-label" style="text-align: left;">User Number</label>
+                          <input type="number" class="form-control" id="modify-num">
+                        </div>
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label" style="text-align: left;">New Rate</label>
+                            <input type="number" class="form-control" id="rate-num">
+                        </div>
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label" style="text-align: left;">New Phone Number</label>
+                            <input type="number" class="form-control" id="phone-num">
+                        </div>
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label" style="text-align: left;">New Email</label>
+                            <input type="email" class="form-control" id="email-num">
+                        </div>
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label" style="text-align: left;">New Birthday</label>
+                            <input type="date" class="form-control" id="birth-num">
+                        </div>
+                      </form>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                      <button type="button" class="btn btn-primary" id="modify" onclick="modify()">Confirm</button>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+        <br><br><br><br><br>
+        <h2 class="message_list">Message List</h2>
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr style="font-weight: bold;">
+                <th scope="col"></th>
+                <th scope="col">#</th>
+                <th scope="col">ID</th>
+                <th scope="col">Title</th>
+                <th scope="col">Type</th>
+              </tr>
+            </thead>
+            <tbody>
+            <% var cnt = 0; %> 
+            <% for(i in msg_key){ %> 
+            <% for(var j=0; j<msg_list[msg_key[i]]['type'].length;j++){ %> 
+            <tr class="accordion-toggle collapsed" id="accordion1" data-toggle="collapse" data-parent="#accordion1" href="#collapse<%=i+j%>">
+                <td class="expand-button"></td>
+                <td><%=i%>-<%=j%></td>
+                <td><%=msg_key[i]%></td>
+                <td><%=msg_list[msg_key[i]].title[j]%></td>
+                <td><%=msg_list[msg_key[i]].type[j]%></td>
+            </tr>
+            <tr class="hide-table-padding hide-list">
+                <td></td>
+                <td></td>
+                <td colspan="3">
+                    <div id="collapse<%=i+j%>" class="collapse in p-3">
+                        <div class="row">
+                            <div class="col-2"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-left-dots" viewBox="0 0 16 16">
+                              <path fill-rule="evenodd" d="M14 1H2a1 1 0 0 0-1 1v11.586l2-2A2 2 0 0 1 4.414 11H14a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+                              <path d="M5 6a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                            </svg>
+                            </div>
+                            <div class="col-4"><%=msg_list[msg_key[i]].msg[j]%></div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <% cnt++; %> 
+            <% } %> 
+            <% } %> 
+            </tbody>
+          </table>
+        </div>
+    </div>
+    <br><br><br><br><br>
+  </body>
+  <footer>
+  </footer>
+    <script>
+        var len = document.getElementById("ban").value;
+        function ban(){
+            var num = document.getElementById("ban-num");
+            if(!num.value || Number(num.value) >= len || Number(num.value) <= 0){
+                alert('Please enter proper number');
+            }
+            else{
+                num = num.value;
+                var gogo = '/admin_ban?num='+num;
+                window.location.href = gogo;
+            }
+        }
+        function modify(){
+            var num = document.getElementById("modify-num");
+            var rate = document.getElementById("rate-num");
+            var phone = document.getElementById("phone-num");
+            var email = document.getElementById("email-num");
+            var birth = document.getElementById("birth-num");
+            if(!num.value || Number(num.value) >= len){
+                alert('Please enter proper number');
+            }
+            else if(Number(rate.value) > 5 || Number(rate.value) < 0){
+                alert('Please enter proper rate number');
+            }
+            else{
+                num = num.value;
+                if(!rate.value) rate = '';
+                else rate = rate.value;
+                if(!phone.value) phone = '';
+                else phone = phone.value;
+                if(!email.value) email = '';
+                else email = email.value;
+                if(!birth.value) birth = '';
+                else birth = birth.value;
+
+                var gogo = '/admin_modify?num=' + num + '&rate=' + rate + '&phone=' + phone + '&email=' + email + '&birth=' + birth;
+                window.location.href = gogo;
+            }
+        }
+    </script>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-app.js"></script>
+
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+      https://firebase.google.com/docs/web/setup#available-libraries -->
+  <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-analytics.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.2/moment-with-locales.min.js"></script>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.min.js"></script>
+</html>

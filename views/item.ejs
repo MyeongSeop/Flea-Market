@@ -1,0 +1,459 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/item.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Josefin+Sans:ital,wght@1,700&family=Merienda:wght@700&family=Open+Sans&family=Yellowtail&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+    <!-- 라이브러리 로드 순서는 아래와 같다. cdnjs 저장소에서 라이브러리를 로드하였다. -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/3.0.0/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.min.css" rel="stylesheet"/>
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/album/">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <title>Product</title>
+  </head>
+  <body>
+    <%- include('header'); %>
+    <div class="item_main">
+        <p class="item_word" style="font-family: 'Yellowtail', cursive;">Product &nbsp;&nbsp; Info</p>
+    </div>
+    <div class="container" style="border: none;">
+		<div class="card" style="border: none;">
+			<div class="container-fliud">
+				<div class="wrapper row">
+					<div class="preview col-md-6">
+						<div class="preview-pic tab-content">
+                          <div class="tab-pane active" id="pic-1"><img src="<%=item.image%>"/>
+                            <% if(time_left.day != 0){ %> 
+                            <p class="on-bid-img">On Bidding</p>
+                            <% } else if(time_left.hour > 0 || time_left.min > 0 || time_left.sec > 0){ %> 
+                            <p class="on-bid-hot">&nbsp;&nbsp;&nbsp;&nbsp;HOT&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                            <% } else{%> 
+                            <p class="on-bid-no">&nbsp;&nbsp;&nbsp;&nbsp;Done&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                            <% } %> 
+                            <input type="hidden" id="time_left" value="<%=Number(time_left.day) + Number(time_left.hour) + Number(time_left.min) + Number(time_left.sec)%>">
+                          </div>
+						</div>
+					</div>
+					<div class="details col-md-6">
+                        
+						<h3 class="product-title" style="margin-bottom: 20px;"><%=item.name%></h3>
+						<div class="rating">
+							<div class="stars" style="margin-bottom: 10px;">
+                                <% for(var i=0;i<Number(seller.rate);i++){ %> 
+								<span class="fa fa-star checked"></span>
+                                <% } %> 
+                                <% for(var i=0;i<(5-Number(seller.rate));i++){ %> 
+								<span class="fa fa-star"></span>
+								<% } %> 
+							</div>
+                        </div>
+                        <div class="addi">
+                            
+                            <p class="review-no" style="font-weight: initial;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M12.166 8.94C12.696 7.867 13 6.862 13 6A5 5 0 0 0 3 6c0 .862.305 1.867.834 2.94.524 1.062 1.234 2.12 1.96 3.07A31.481 31.481 0 0 0 8 14.58l.208-.22a31.493 31.493 0 0 0 1.998-2.35c.726-.95 1.436-2.008 1.96-3.07zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z"/>
+                                <path fill-rule="evenodd" d="M8 8a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                              </svg>&nbsp;&nbsp;Location: &nbsp;<%=item.location%></p>
+                            
+                            <p class="review-no" style="font-weight: initial;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-tags-fill" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M3 1a1 1 0 0 0-1 1v4.586a1 1 0 0 0 .293.707l7 7a1 1 0 0 0 1.414 0l4.586-4.586a1 1 0 0 0 0-1.414l-7-7A1 1 0 0 0 7.586 1H3zm4 3.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+                                <path d="M1 7.086a1 1 0 0 0 .293.707L8.75 15.25l-.043.043a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 0 7.586V3a1 1 0 0 1 1-1v5.086z"/>
+                              </svg>&nbsp;&nbsp;Category: &nbsp;<%=item.category%></p>
+                        </div>
+						<h4 class="price">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-cash" viewBox="0 0 18 18">
+                                <path fill-rule="evenodd" d="M15 4H1v8h14V4zM1 3a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H1z"/>
+                                <path d="M13 4a2 2 0 0 0 2 2V4h-2zM3 4a2 2 0 0 1-2 2V4h2zm10 8a2 2 0 0 1 2-2v2h-2zM3 12a2 2 0 0 0-2-2v2h2zm7-4a2 2 0 1 1-4 0 2 2 0 0 1 4 0z"/>
+                            </svg><span style="color: black; margin-right: 25%">&nbsp;<%=item.price%>&nbsp;&#8361;&nbsp;&nbsp;&nbsp;</span>
+                            <span style="color: red;"><svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-truck" viewBox="0 0 18 18" style="color: red;">
+                                <path fill-rule="evenodd" d="M0 3.5A1.5 1.5 0 0 1 1.5 2h9A1.5 1.5 0 0 1 12 3.5V5h1.02a1.5 1.5 0 0 1 1.17.563l1.481 1.85a1.5 1.5 0 0 1 .329.938V10.5a1.5 1.5 0 0 1-1.5 1.5H14a2 2 0 1 1-4 0H5a2 2 0 1 1-3.998-.085A1.5 1.5 0 0 1 0 10.5v-7zm1.294 7.456A1.999 1.999 0 0 1 4.732 11h5.536a2.01 2.01 0 0 1 .732-.732V3.5a.5.5 0 0 0-.5-.5h-9a.5.5 0 0 0-.5.5v7a.5.5 0 0 0 .294.456zM12 10a2 2 0 0 1 1.732 1h.768a.5.5 0 0 0 .5-.5V8.35a.5.5 0 0 0-.11-.312l-1.48-1.85A.5.5 0 0 0 13.02 6H12v4zm-9 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm9 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+                            </svg>&nbsp;<%=item.price_end%>&nbsp;&#8361;</span>
+                        </h4>
+                        <div class="time_left">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-stopwatch" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M6 .5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1H9v1.07A7.001 7.001 0 0 1 8 16 7 7 0 0 1 7 2.07V1h-.5A.5.5 0 0 1 6 .5zM8 3a6 6 0 1 0 .001 12A6 6 0 0 0 8 3zm0 2.1a.5.5 0 0 1 .5.5V9a.5.5 0 0 1-.5.5H4.5a.5.5 0 0 1 0-1h3V5.6a.5.5 0 0 1 .5-.5z"/>
+                            </svg>
+                            <% if(time_left.day < 0 || time_left.hour < 0 || time_left.min < 0 || time_left.sec < 0){ %> 
+                                <span style="color: red;">&nbsp;&nbsp;Done</span>
+                            <% } else{%> 
+                            <span style="color: red;">&nbsp;&nbsp;<%=time_left.day%> days <%=time_left.hour%> hour <%=time_left.min%> min <%=time_left.sec%> sec </span>
+                            <% } %> 
+                        </div>
+                        <div class="btn-group">
+                            <button type="button" class="bid" data-toggle="modal" data-target="#bidModal" id="btn-bid" value="<%=item.price%>">Bid</button>
+                            <button type="button" class="im-bid" data-toggle="modal" data-target="#immediateModal" id="btn-imm" value="<%=item.price_end%>">Immediate</button>
+                        </div>
+                        <% if(rows != ''){ %> 
+						<div class="add">
+                            <a href="/add_like?itemID=<%=itemID%>" style="text-decoration: none; color:black">
+                                <button type="button" class="btn btn-circle btn-sm" id="btn-like" value="<%=rows%>">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M8 2.748l-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
+                                    </svg>
+                                </button>
+                                &nbsp;Add to wish list
+                            </a>
+                        </div>
+                        <% } %> 
+					</div>
+                </div>               
+            </div>
+            <div class="modal fade" id="mapModal" tabindex="-1" aria-labelledby="mapModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="mapModalLabel">MAP</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                        <div id="map" style="width: 100%; height: 400px;"></div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                </div>
+            </div>
+            <div class="modal fade" id="bidModal" tabindex="-1" aria-labelledby="bidModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="bidModalLabel" >Bid for product</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <form>
+                        <div class="form-group">
+                          <label for="recipient-name" class="col-form-label" style="text-align: center; font-weight:bold">Bidding</label>
+                          <input type="number" class="form-control" id="bid-price">
+                        </div>
+                        <div class="form-group form-inline">
+                            <input type="checkbox" class="form-control" id="bid_check" name="bid_check" value="true" style=" width:15px; display:inline">
+                            <label for="recipient-name" class="col-form-label" style="display:inline; color:red; font-size:15px;">&nbsp;&nbsp;If you get success on your bid, there is no return!</label>
+                        </div>
+                      </form>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary" id="bid-upload" value="<%=seller.ID%>" onclick="bid_upload()">&nbsp;&nbsp;Bid&nbsp;&nbsp;</button>
+                    </div>
+                  </div>
+                </div>
+            </div>
+            <div class="modal fade" id="immediateModal" tabindex="-1" aria-labelledby="immediateModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="immediateModalLabel">Immediate Purchase</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <form>
+                        <div class="form-group form-inline">
+                            <input type="checkbox" class="form-control" id="immediate_check" name="immediate_check" value="true" style=" width:15px; display:inline">
+                            <label for="recipient-name" class="col-form-label" style="display:inline; color:red; font-size:15px;">&nbsp;&nbsp;If you do this, there is no return!</label>
+                        </div>
+                        <div class="form-group" style="text-align: center;">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">&nbsp;&nbsp;Cancel&nbsp;&nbsp;</button>
+                            <button type="button" class="btn btn-danger" style="margin-left: 20px;" id="imm-upload" value="<%=seller.ID%>" onclick="imm_upload()">Purchase</button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+            </div>
+            
+            <div class="containerss" style="margin-top: 30px; width:100%">
+                <div class="row">
+                    <div class="col-30 col-md-12 col-lg-12 size-tab">
+                      <ul class="nav nav-tabs nav-justified" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#des" role="tab" aria-controls="des" aria-selected="true">Description</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#seller" role="tab" aria-controls="seller" aria-selected="false">Seller Info</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#Q" role="tab" aria-controls="Q@A" aria-selected="false">Q@A</a>
+                        </li>
+                      </ul>
+                      
+                      <div class="tab-content mt-2">
+                        <div class="tab-pane active" id="des" role="tabpanel" aria-labelledby="des-tab">
+                            <br>
+                            <p><%=item.description%></p>
+                        </div>
+                        <div class="tab-pane" id="seller" role="tabpanel" aria-labelledby="seller-tab">
+                            <br>
+                            <p><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                                <path d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 0 0 8 15a6.987 6.987 0 0 0 5.468-2.63z"/>
+                                <path fill-rule="evenodd" d="M8 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                                <path fill-rule="evenodd" d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8z"/>
+                              </svg>&nbsp;&nbsp;<%=seller.ID%></p>
+                            <p><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope-fill" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555zM0 4.697v7.104l5.803-3.558L0 4.697zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757zm3.436-.586L16 11.801V4.697l-5.803 3.546z"/>
+                              </svg>&nbsp;&nbsp;<%=seller.email%></p>
+                            <p><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-telephone-fill" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M2.267.98a1.636 1.636 0 0 1 2.448.152l1.681 2.162c.309.396.418.913.296 1.4l-.513 2.053a.636.636 0 0 0 .167.604L8.65 9.654a.636.636 0 0 0 .604.167l2.052-.513a1.636 1.636 0 0 1 1.401.296l2.162 1.681c.777.604.849 1.753.153 2.448l-.97.97c-.693.693-1.73.998-2.697.658a17.47 17.47 0 0 1-6.571-4.144A17.47 17.47 0 0 1 .639 4.646c-.34-.967-.035-2.004.658-2.698l.97-.969z"/>
+                              </svg>&nbsp;&nbsp;<%=seller.phone%></p>
+                        </div>
+                        <div class="tab-pane" id="Q" role="tabpanel" aria-labelledby="Q-tab">
+                            <br>
+                            <table class="table">
+                                <thead>
+                                  <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Question</th>
+                                    <th scope="col">Answer</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <% for(i in Q){ %> 
+                                  <tr>
+                                    <th scope="row"><%=Q[i].num%></th>
+                                    <td><%=Q[i].ID%></td>
+                                    <td><%=Q[i].q%></td>
+                                    <td><%=A[i].a%> 
+                                    </td>
+                                  </tr>
+                                  <% } %> 
+                                </tbody>
+                            </table>
+                            <% if(rows==seller.ID){ %> 
+                                <div style="text-align: right;">
+                                    <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#answerModal" id="ans-ID">Answer</button>
+                                </div>
+                            <% } %> 
+                            <div class="modal fade" id="answerModal" tabindex="-1" aria-labelledby="answerModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="answerModalLabel">New Answer</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form>
+                                            <div class="form-group">
+                                                <label for="q-number" class="col-form-label">Question Number: </label>
+                                                <input type="number" class="form-control" id="q-num">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="message-text" class="col-form-label">Answer</label>
+                                                <textarea class="form-control" id="answer"></textarea>
+                                            </div>
+                                            </form>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                            <button type="button" class="btn btn-primary" id="btn-a" value="<%=itemID%>" onclick="answer()">Upload</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <% if(rows != '' && rows != seller.ID){ %> 
+                            <div style="text-align: right;">
+                                <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#exampleModal" style="text-align: right;"><i class="fas fa-question"></i>&nbsp;&nbsp;Ask</button>
+                            </div>
+                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">New Question</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form>
+                                            <div class="mb-3">
+                                                <label for="message-text" class="col-form-label">Question</label>
+                                                <textarea class="form-control" id="question"></textarea>
+                                            </div>
+                                            </form>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                            <button type="button" class="btn btn-primary" id="btn-q" value="<%=itemID%>" onclick="upload()">Upload</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <% } %> 
+                        </div>
+                      </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="similar">
+            <h2 class="similar-head">Related Items</h2>
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                <% var cnt = 0; %>
+                <% for(var i in all_key){ %>
+                <% if(all[all_key[i]].category != item.category) continue;  
+                   else cnt = cnt + 1;
+                   if(cnt == 4) continue; %> 
+                <div class="col" style="margin-top: 20px;">
+                    <div class="card shadow-sm">
+                        <svg class="bd-placeholder-img card-img-top" width="100%" height="0" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><img class="item_img" src="<%= all[all_key[i]].image %>" alt="image"></svg>
+                        <div class="card-body">
+                            <a href="/item?itemID=<%=all_key[i]%>" style="text-decoration: none; color:black;"><p class="card-text" style="font-size: 20px; font-weight:bold;"><%=all[all_key[i]].name%></p></a>
+                            <div class="d-flex justify-content-between align-items-center">
+                            <p style="display: inline-block; font-size: 15px;" >
+                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-cash" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M15 4H1v8h14V4zM1 3a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H1z"/>
+                                <path d="M13 4a2 2 0 0 0 2 2V4h-2zM3 4a2 2 0 0 1-2 2V4h2zm10 8a2 2 0 0 1 2-2v2h-2zM3 12a2 2 0 0 0-2-2v2h2zm7-4a2 2 0 1 1-4 0 2 2 0 0 1 4 0z"/>
+                                </svg>&nbsp;<%=all[all_key[i]].price%>&#8361;&nbsp;&nbsp;</p>
+                            <p style="display: inline-block; color:red; font-size: 15px">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-truck" viewBox="0 0 20 20" style="color: red;">
+                                <path fill-rule="evenodd" d="M0 3.5A1.5 1.5 0 0 1 1.5 2h9A1.5 1.5 0 0 1 12 3.5V5h1.02a1.5 1.5 0 0 1 1.17.563l1.481 1.85a1.5 1.5 0 0 1 .329.938V10.5a1.5 1.5 0 0 1-1.5 1.5H14a2 2 0 1 1-4 0H5a2 2 0 1 1-3.998-.085A1.5 1.5 0 0 1 0 10.5v-7zm1.294 7.456A1.999 1.999 0 0 1 4.732 11h5.536a2.01 2.01 0 0 1 .732-.732V3.5a.5.5 0 0 0-.5-.5h-9a.5.5 0 0 0-.5.5v7a.5.5 0 0 0 .294.456zM12 10a2 2 0 0 1 1.732 1h.768a.5.5 0 0 0 .5-.5V8.35a.5.5 0 0 0-.11-.312l-1.48-1.85A.5.5 0 0 0 13.02 6H12v4zm-9 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm9 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+                                </svg>&nbsp;<%=all[all_key[i]].price_end%>&#8361;</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <% } %> 
+            </div> 
+        </div>
+    </div>
+  </body>
+  <footer>
+    <%- include('footer'); %>
+  </footer>
+    <script>
+        function upload(){
+            var question = document.getElementById("question");
+            if(!question.value) alert("Please Enter Question!");
+            else{
+                var itemID = document.getElementById("btn-q").value;
+                var gogo = question.value;
+                var cur_url = document.location.href;
+                gogo = "/q_upload?q=" + gogo + "&itemID=" + itemID+"&cur="+cur_url;
+                window.location.href = gogo;
+            }
+            
+        }
+
+        function answer(){
+            var answer = document.getElementById("answer");
+            var q_num = document.getElementById("q-num");
+            if(!answer.value || !q_num.value) alert("Please Enter Answer!");
+            else{
+                var itemID = document.getElementById("btn-a").value;
+                var gogo = answer.value;
+                var cur_url = document.location.href;
+                q_num = q_num.value;
+                gogo = "/a_upload?a=" + gogo + "&itemID=" + itemID + "&cur=" + cur_url + "&q_num=" + q_num;
+                window.location.href = gogo;
+            }
+        }
+        
+
+        function bid_upload(){
+            var myID = document.getElementById("btn-like");
+            if(!myID.value || myID.value==''){
+                alert("Please Login First!");
+                window.location.href = "/login";
+            }
+            else{
+                myID = myID.value;
+                var time_left = document.getElementById("time_left").value;
+                time_left = Number(time_left);
+                if(time_left <= 0){
+                    alert("Bidding is done!");
+                    return;
+                }
+                var sellerID = document.getElementById("bid-upload").value;
+                if(myID == sellerID){
+                    alert("It's your product!");
+                    return;
+                }
+                var bid_price = document.getElementById("bid-price");
+                var cur_price = document.getElementById("btn-bid").value;
+                var max_price = document.getElementById('btn-imm').value;
+                cur_price = Number(cur_price);
+                max_price = Number(max_price);
+                if(!bid_price.value || Number(bid_price.value) <= cur_price || Number(bid_price.value) >= max_price){
+                    alert("Please Enter Proper Price");
+                    return;
+                }
+                bid_price = bid_price.value;
+                
+                var ischeck = $(bid_check).is(":checked");
+                if(ischeck==false){
+                    alert("Please check terms");
+                    return;
+                }
+                var cur_url = document.location.href;
+                var itemID = document.getElementById("btn-q").value;
+                var gogo = "/bid_upload?price=" + bid_price + "&cur=" + cur_url + "&itemID=" +itemID;
+                window.location.href = gogo;
+            }
+        }
+
+        function imm_upload(){
+            var myID = document.getElementById("btn-like");
+            if(!myID.value || myID.value==''){
+                alert("Please Login First!");
+                window.location.href = "/login";
+            }
+            else{
+                myID = myID.value;
+                var time_left = document.getElementById("time_left").value;
+                time_left = Number(time_left);
+                if(time_left <= 0){
+                    alert("Bidding is done!");
+                    return;
+                }
+                var sellerID = document.getElementById("bid-upload").value;
+                if(myID == sellerID){
+                    alert("It's your product!");
+                    return;
+                }
+                var price = document.getElementById('btn-imm').value;
+                var ischeck = $(immediate_check).is(":checked");
+                if(ischeck==false){
+                    alert("Please check terms");
+                    return;
+                }
+                var cur_url = document.location.href;
+                var itemID = document.getElementById("btn-q").value;
+                var gogo = "/imm_upload?price=" + price + "&cur=" + cur_url + "&itemID=" + itemID;
+                window.location.href = gogo;
+            }
+        }
+
+        
+    </script>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-app.js"></script>
+
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+      https://firebase.google.com/docs/web/setup#available-libraries -->
+  <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-analytics.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.2/moment-with-locales.min.js"></script>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.min.js"></script>
+</html>

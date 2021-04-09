@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/myaccount.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Yellowtail&display=swap" rel="stylesheet">
+    <title>Account</title>
+  </head>
+  <body>
+    <%- include('header'); %>
+    <div class="account">
+      <p class="account_word">Account &nbsp;&nbsp; info</p>
+    </div>
+    <div class="info_list container my-4">
+        <form action="/mypage" method="POST">
+            <div class="form-group" style="margin: 10px;">
+                <label for="Name" style="font-weight: bold;">Name</label>
+                <input type="text" class="form-control" name="name" value="<%=info.name%>" readonly>
+                <label for="ID" style="font-weight: bold;">ID</label>
+                <input type="text" class="form-control" name="ID" value="<%=rows%>" readonly>
+                <label for="password" style="font-weight: bold;">Password</label>
+                <input type="password" class="form-control" name="password" value ="<%=info.password%>" placeholder="<%=info.password%>">
+                <label for="phone" style="font-weight: bold;">Phone number</label>
+                <input type="number" class="form-control" name="phone" placeholder="<%=info.phone%>" value="<%=info.phone%>">
+                <label for="birth" style="font-weight: bold;">Date of Birth</label>
+                <input type="date" class="form-control" name="birth" placeholder="<%=info.birth%>" value="<%=info.birth%>">
+                <label for="Email" style="font-weight: bold;">Email address</label>
+                <input type="email" class="form-control" name="email" aria-describedby="emailHelp" placeholder="<%=info.email%>" value="<%=info.email%>">
+            </div>
+            <div class="btns">
+              <a type="button" class="btn btn-outline-dark" style="text-align: center;" href="/mypage">Cancel</a>
+              <button type="submit" class="btn btn-outline-primary" style="text-align: center;">Submit</button>
+            </div>
+        </form>
+    </div>
+    
+  </body>
+  <footer>
+    <%- include('footer'); %>
+  </footer>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-app.js"></script>
+
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+      https://firebase.google.com/docs/web/setup#available-libraries -->
+  <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-analytics.js"></script>
+</html>

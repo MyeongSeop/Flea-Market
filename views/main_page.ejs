@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/main_page.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Josefin+Sans:ital,wght@1,700&family=Merienda:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Market</title>
+  </head>
+  <body>
+    <%- include('header'); %>
+    <div class="main_part">
+      <div class="main_img">
+        <img src="icon/hero_man.png" alt="main_img" class="img">
+      </div>
+      <div class="main_word">
+        <p class="first">10000+ Items !</p>
+        <p class="second">Korea No.1 <br>Flea Market</p>
+        <p class="third">Start auction right now !</p>
+        <br>
+        <a href="/category" type="button" class="btn btn-primary main_btn">Start</a>
+      </div>
+    </div>
+    <p class="def_cat">Category</p>
+    <div class="main_category">
+      <div class="category elec">
+        <div class="des">
+          <p style="padding-top: 50px;">Electronics</p>
+          <a href="/category?cat=electronics" type="button" class="btn btn-light" style="margin-top:230px; margin-bottom: 30px; width:100px;">Go</a>
+        </div>
+      </div>
+      <div class="category fashion">
+        <div class="des">
+          <p style="padding-top: 50px;">Fashion</p>
+          <a href="/category?cat=fashion" type="button" class="btn btn-light" style="margin-top:230px; margin-bottom: 30px; width:100px;">Go</a>
+        </div>
+      </div>
+      <div class="category beauty">
+        <div class="des">
+          <p style="padding-top: 50px;">Beuaty</p>
+          <a href="/category?cat=beauty" type="button" class="btn btn-light" style="margin-top:230px; margin-bottom: 30px; width:100px;">Go</a>
+        </div>
+      </div>
+      <div class="category home">
+        <div class="des">
+          <p style="padding-top: 50px;">Home supply</p>
+          <a href="/category?cat=daily" type="button" class="btn btn-light" style="margin-top:230px; margin-bottom: 30px; width:100px;">Go</a>
+        </div>
+      </div>
+    </div>
+    <p class="def_cat">Product</p>
+    <div class="product">
+      <% for(i in product){ %> 
+      <div class="item">
+        <img src="<%= product[i].image%>" class="item_img" alt="nono">
+        <p style="padding-top: 20px;"><a href="/item?itemID=<%=product[i].ID%>" style="text-decoration: none; color:black"><%=product[i].name%></a></p>
+        <p style="display: inline-block; font-size: 15px;" ><%=product[i].price%>&#8361;&nbsp;&nbsp;</p>
+        <p style="display: inline-block; color:red; font-size: 15px"><%=product[i].price_end%>&#8361;</p>
+      </div>
+      <% } %> 
+    </div>
+  </body>
+  <footer>
+    <%- include('footer'); %>
+  </footer>
+  
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-app.js"></script>
+
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+      https://firebase.google.com/docs/web/setup#available-libraries -->
+  <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-analytics.js"></script>
+  <script src="https://kit.fontawesome.com/c85d62c8b6.js"></script>
+
+</html>
